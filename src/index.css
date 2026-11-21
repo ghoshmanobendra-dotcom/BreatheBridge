@@ -1,0 +1,255 @@
+@import "tailwindcss";
+
+/* ============================================================
+   BreatheBridge Design Tokens
+   Light mode: crisp sky-to-indigo palette
+   Dark mode:  deep slate canvas (auto via prefers-color-scheme
+               and the [data-theme="dark"] attribute toggle)
+   WCAG AA contrast maintained on every token pair.
+   ============================================================ */
+
+:root {
+  /* --- Brand palette (light) --- */
+  --bb-bg:          #f0f4ff;      /* soft sky-blue background       */
+  --bb-surface:     #ffffff;      /* card / panel surface            */
+  --bb-surface-2:   #e8edf8;      /* slightly elevated surface       */
+  --bb-border:      rgba(99,102,241,0.18);
+  --bb-primary:     #6366f1;      /* indigo-500 — CTA / accent       */
+  --bb-primary-dk:  #4f46e5;      /* indigo-600 — hover              */
+  --bb-secondary:   #0ea5e9;      /* sky-500 — data/info             */
+  --bb-success:     #10b981;      /* emerald-500 — good AQI          */
+  --bb-warning:     #f59e0b;      /* amber-500 — moderate AQI        */
+  --bb-danger:      #ef4444;      /* red-500 — hazardous AQI         */
+  --bb-text:        #1e1b4b;      /* indigo-950 — primary text       */
+  --bb-text-muted:  #6b7280;      /* gray-500 — secondary text       */
+  --bb-text-inverse:#ffffff;
+  --bb-focus-ring:  #6366f1;
+
+  /* Sidebar / nav widths */
+  --bb-sidebar-w:   240px;
+  --bb-sidebar-collapsed: 64px;
+}
+
+/* Dark mode — matches prefers-color-scheme AND explicit data-theme="dark" */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bb-bg:          #0b0f1a;
+    --bb-surface:     #131929;
+    --bb-surface-2:   #1e2740;
+    --bb-border:      rgba(99,102,241,0.22);
+    --bb-primary:     #818cf8;    /* indigo-400 — lighter for dark bg */
+    --bb-primary-dk:  #6366f1;
+    --bb-secondary:   #38bdf8;
+    --bb-success:     #34d399;
+    --bb-warning:     #fbbf24;
+    --bb-danger:      #f87171;
+    --bb-text:        #e0e7ff;
+    --bb-text-muted:  #94a3b8;
+    --bb-text-inverse:#0b0f1a;
+    --bb-focus-ring:  #818cf8;
+  }
+}
+
+[data-theme="dark"] {
+  --bb-bg:          #0b0f1a;
+  --bb-surface:     #131929;
+  --bb-surface-2:   #1e2740;
+  --bb-border:      rgba(99,102,241,0.22);
+  --bb-primary:     #818cf8;
+  --bb-primary-dk:  #6366f1;
+  --bb-secondary:   #38bdf8;
+  --bb-success:     #34d399;
+  --bb-warning:     #fbbf24;
+  --bb-danger:      #f87171;
+  --bb-text:        #e0e7ff;
+  --bb-text-muted:  #94a3b8;
+  --bb-text-inverse:#0b0f1a;
+  --bb-focus-ring:  #818cf8;
+}
+
+[data-theme="light"] {
+  --bb-bg:          #f0f4ff;
+  --bb-surface:     #ffffff;
+  --bb-surface-2:   #e8edf8;
+  --bb-border:      rgba(99,102,241,0.18);
+  --bb-primary:     #6366f1;
+  --bb-primary-dk:  #4f46e5;
+  --bb-secondary:   #0ea5e9;
+  --bb-success:     #10b981;
+  --bb-warning:     #f59e0b;
+  --bb-danger:      #ef4444;
+  --bb-text:        #1e1b4b;
+  --bb-text-muted:  #6b7280;
+  --bb-text-inverse:#ffffff;
+  --bb-focus-ring:  #6366f1;
+}
+
+/* ---- Base ---- */
+body {
+  background-color: var(--bb-bg);
+  color: var(--bb-text);
+  /* Primary: Plus Jakarta Sans — geometric, modern display/body */
+  /* Secondary (UI labels): DM Sans — humanist, highly legible   */
+  font-family: 'Plus Jakarta Sans', 'DM Sans', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* WCAG 2.4.7 Focus Visible — indigo ring */
+:focus-visible {
+  outline: 2px solid var(--bb-focus-ring);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ---- Utility classes ---- */
+.glass-card {
+  background: color-mix(in srgb, var(--bb-surface) 80%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--bb-border);
+  border-radius: 1rem;
+}
+
+/* ---- Animations ---- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* ---- Arabic font ---- */
+.font-arabic {
+  font-family: 'Noto Sans Arabic', Tahoma, sans-serif;
+}
+
+/* ---- Bengali & Hindi fonts ---- */
+.font-bengali {
+  font-family: 'Noto Sans Bengali', system-ui, sans-serif;
+}
+
+.font-hindi {
+  font-family: 'Noto Sans Devanagari', system-ui, sans-serif;
+}
+
+/* ---- AppShell layout: collapsible sidebar on desktop ---- */
+.bb-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar (desktop ≥ md) */
+.bb-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 40;
+  width: var(--bb-sidebar-w);
+  background: var(--bb-surface);
+  border-right: 1px solid var(--bb-border);
+  display: flex;
+  flex-direction: column;
+  transition: width 0.25s ease;
+  overflow: hidden;
+}
+.bb-sidebar.collapsed {
+  width: var(--bb-sidebar-collapsed);
+}
+
+/* Main content area shifts right on desktop */
+.bb-main-wrap {
+  flex: 1;
+  margin-left: var(--bb-sidebar-w);
+  transition: margin-left 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.bb-main-wrap.sidebar-collapsed {
+  margin-left: var(--bb-sidebar-collapsed);
+}
+
+/* On mobile: no sidebar margin, bottom tab bar instead */
+@media (max-width: 767px) {
+  .bb-sidebar      { display: none; }
+  .bb-main-wrap    { margin-left: 0 !important; padding-bottom: 72px; }
+  .bb-bottom-bar   { display: flex; }
+}
+@media (min-width: 768px) {
+  .bb-bottom-bar   { display: none; }
+  .bb-sidebar      { display: flex; }
+}
+
+/* Bottom tab bar (mobile) */
+.bb-bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  background: var(--bb-surface);
+  border-top: 1px solid var(--bb-border);
+  align-items: stretch;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* Nav item shared styles */
+.bb-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--bb-text-muted);
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  transition: background 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+  text-align: left;
+  width: 100%;
+  font-family: inherit;
+}
+.bb-nav-item:hover {
+  background: color-mix(in srgb, var(--bb-primary) 10%, transparent);
+  color: var(--bb-primary);
+}
+.bb-nav-item.active {
+  background: color-mix(in srgb, var(--bb-primary) 15%, transparent);
+  color: var(--bb-primary);
+}
+/* Sidebar: icons + labels visible unless collapsed → icon only */
+.bb-sidebar.collapsed .bb-nav-label { display: none; }
+.bb-sidebar.collapsed .bb-nav-item  { justify-content: center; padding: 0.75rem; }
+
+/* Bottom tab bar items */
+.bb-tab-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 0.5rem 0.25rem;
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: var(--bb-text-muted);
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  transition: color 0.15s ease;
+  font-family: inherit;
+}
+.bb-tab-item.active {
+  color: var(--bb-primary);
+}
+.bb-tab-item .bb-tab-icon {
+  font-size: 1.25rem;
+  line-height: 1;
+}

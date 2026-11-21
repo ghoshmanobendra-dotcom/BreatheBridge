@@ -97,7 +97,7 @@ app.get('*splat', (_req: Request, res: Response) => {
 app.use(safeErrorHandler);
 
 // 7. Server Listener
-if (process.env.NODE_ENV !== 'test') {
+if (process.env.NODE_ENV !== 'test' && !process.env.VERCEL) {
   app.listen(PORT, () => {
     console.log(`[BreatheBridge] Backend listening on port ${PORT}`);
   });

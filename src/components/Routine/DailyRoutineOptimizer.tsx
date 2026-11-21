@@ -7,6 +7,7 @@
 import { memo, useState, useCallback } from 'react';
 import { useAppContext } from '@/context/AppContext';
 import { apiService } from '@/services/apiService';
+import { generateClientFallbackRoutine } from '@/lib/compute/routineFallback';
 import type { PersonaProfile } from '@/types';
 import { RoutineTimeline } from './RoutineTimeline';
 
@@ -38,10 +39,12 @@ export const DailyRoutineOptimizer = memo(function DailyRoutineOptimizer() {
         forceRefresh: true,
       });
       setRoutinePlan(plan);
-      setSuccessMessage(`Schedule successfully generated for ${activePersona.name}!`);
+      setSuccessMessage(`AI Schedule successfully generated for ${activePersona.name}!`);
     } catch (err: unknown) {
-      console.error('Failed to generate routine:', err);
-      setErrorMessage('Unable to generate AI schedule right now. Showing localized heuristic guidance.');
+      console.warn('API error, using localized heuristic engine:', err);
+      const fallbackPlan = generateClientFallbackRoutine(activePersona, selectedZone, language);
+      setRoutinePlan(fallbackPlan);
+      setErrorMessage('Backend AI unreachable. Showing localized heuristic guidance.');
     } finally {
       setIsLoading(false);
     }
@@ -92,7 +95,12 @@ export const DailyRoutineOptimizer = memo(function DailyRoutineOptimizer() {
                   key={p.id}
                   type="button"
                   aria-pressed={isSelected}
-                  onClick={() => { setActivePersona(p); setSuccessMessage(null); setErrorMessage(null); }}
+                  onClick={() => {
+                    setActivePersona(p);
+                    setSuccessMessage(null);
+                    setErrorMessage(null);
+                    setRoutinePlan(generateClientFallbackRoutine(p, selectedZone, language));
+                  }}
                   className={`p-3.5 rounded-2xl border text-left transition-all focus:outline-none focus:ring-2 focus:ring-emerald-500 ${
                     isSelected
                       ? 'bg-slate-800/90 border-emerald-500 shadow-md shadow-emerald-950/40 ring-1 ring-emerald-500/50'

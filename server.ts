@@ -10,7 +10,7 @@ import express, { type Request, type Response } from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
-import { insightCache, hashPayload, pruneCache } from './server/cache';
+import { insightCache, hashPayload, pruneCache, isCacheEntryFresh } from './server/cache';
 import { validateZone, validatePersona, sanitizeText } from './server/validators';
 import { helmetMiddleware, corsMiddleware, aiRateLimiter, safeErrorHandler } from './server/middleware';
 import { getAiRoutineInsights, getEmergencyAdvisoryText } from './server/aiService';
@@ -51,8 +51,9 @@ app.post('/api/routine-insights', aiRateLimiter, async (req: Request, res: Respo
   const cleanLang = sanitizeText(language, 10) || 'en';
   const cacheKey = hashPayload({ personaId: persona.id, zoneId: zone.zoneId, aqi: zone.aqi, cleanLang });
 
-  if (!forceRefresh && insightCache.has(cacheKey)) {
-    return res.status(200).json(insightCache.get(cacheKey)!.data);
+  const cachedInsight = insightCache.get(cacheKey);
+  if (!forceRefresh && cachedInsight && isCacheEntryFresh(cachedInsight)) {
+    return res.status(200).json(cachedInsight.data);
   }
 
   const result = await getAiRoutineInsights(persona, zone, cleanLang);

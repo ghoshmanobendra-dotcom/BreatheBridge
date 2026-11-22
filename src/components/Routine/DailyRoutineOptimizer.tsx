@@ -179,8 +179,8 @@ export const DailyRoutineOptimizer = memo(function DailyRoutineOptimizer() {
               <span aria-hidden="true">💡</span> Expert Smog Defense Directives
             </h3>
             <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-slate-300">
-              {routinePlan.generalAdvice.map((advice, i) => (
-                <li key={i} className="flex items-start gap-2 bg-slate-800/40 p-3 rounded-xl border border-slate-700/30">
+              {routinePlan.generalAdvice.map((advice) => (
+                <li key={advice.slice(0, 40)} className="flex items-start gap-2 bg-slate-800/40 p-3 rounded-xl border border-slate-700/30">
                   <span className="text-emerald-400 font-bold" aria-hidden="true">✔</span>
                   <span>{advice}</span>
                 </li>

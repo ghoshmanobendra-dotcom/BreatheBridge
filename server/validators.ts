@@ -57,6 +57,7 @@ export function validatePersona(p: unknown): p is ValidatedPersona {
   if (typeof obj.id !== 'string' || obj.id.length === 0 || obj.id.length > 50) return false;
   if (typeof obj.name !== 'string' || obj.name.length === 0 || obj.name.length > 100) return false;
   if (typeof obj.subCategory !== 'string' || obj.subCategory.length === 0) return false;
+  if (typeof obj.sensitivityLevel !== 'string' || !['high', 'moderate', 'low'].includes(obj.sensitivityLevel)) return false;
   if (!isFiniteNumber(obj.preferredStartHour) || obj.preferredStartHour < 0 || obj.preferredStartHour > 23) return false;
   if (!isFiniteNumber(obj.preferredEndHour) || obj.preferredEndHour < 0 || obj.preferredEndHour > 23) return false;
 

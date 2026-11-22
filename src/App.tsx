@@ -25,6 +25,14 @@ const AppShell = memo(function AppShell() {
       className={`bb-layout${accessibilityMode === 'high-contrast' ? ' contrast-125' : ''}`}
       style={{ background: 'var(--bb-bg)', color: 'var(--bb-text)' }}
     >
+      {/* 0. Skip-to-content bypass link (WCAG 2.4.1) */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:rounded-xl focus:font-bold focus:text-white focus:bg-emerald-700 focus:ring-2 focus:ring-emerald-400 focus:outline-none"
+      >
+        Skip to main content
+      </a>
+
       {/* 1. Navigation — sidebar (desktop) + top bar + bottom tab bar (mobile) */}
       <Header />
 

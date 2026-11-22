@@ -21,8 +21,7 @@ export const AlertBanner = memo(function AlertBanner({
   return (
     <div
       role="alert"
-      aria-live="assertive"
-      aria-atomic="false"
+      aria-atomic="true"
       className="fixed top-18 right-4 left-4 md:left-auto md:w-96 z-50 flex flex-col gap-2 pointer-events-none"
     >
       {alerts.slice(0, 2).map((alert) => (

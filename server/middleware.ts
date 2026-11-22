@@ -44,7 +44,7 @@ export const corsMiddleware = cors({
     ) {
       return callback(null, true);
     }
-    return callback(new Error(`CORS policy violation: ${origin}`), false);
+    return callback(new Error('CORS policy violation'), false);
   },
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type'],

@@ -87,16 +87,18 @@ export const AirTelemetryDashboard = memo(function AirTelemetryDashboard() {
             <button
               type="button"
               onClick={simulateSmogSpike}
+              aria-label="Simulate Winter Smog Spike: increases AQI by 45"
               className="px-3 py-1.5 rounded-xl text-xs font-bold bg-red-900/60 border border-red-500/50 text-red-200 hover:bg-red-800/80 transition-all focus:outline-none focus:ring-2 focus:ring-red-500"
             >
-              ⚡ Simulate Winter Smog Spike (+45 AQI)
+              <span aria-hidden="true">⚡</span> Simulate Winter Smog Spike (+45 AQI)
             </button>
             <button
               type="button"
               onClick={simulateCleanDispersion}
+              aria-label="Simulate Solar Wind Cleansing: decreases AQI by 50"
               className="px-3 py-1.5 rounded-xl text-xs font-bold bg-emerald-900/60 border border-emerald-500/50 text-emerald-200 hover:bg-emerald-800/80 transition-all focus:outline-none focus:ring-2 focus:ring-emerald-500"
             >
-              🍃 Simulate Solar Wind Cleansing (-50 AQI)
+              <span aria-hidden="true">🍃</span> Simulate Solar Wind Cleansing (-50 AQI)
             </button>
           </div>
           <span className="text-[11px] text-slate-400">

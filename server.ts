@@ -72,8 +72,9 @@ app.post('/api/emergency-advisory', aiRateLimiter, async (req: Request, res: Res
   const cleanLang = sanitizeText(language, 10) || 'en';
   const cacheKey = hashPayload({ type: 'advisory', zoneId: zone.zoneId, aqi: zone.aqi, cleanLang });
 
-  if (insightCache.has(cacheKey)) {
-    return res.status(200).json({ advisory: insightCache.get(cacheKey)!.data });
+  const cachedAdvisory = insightCache.get(cacheKey);
+  if (cachedAdvisory && isCacheEntryFresh(cachedAdvisory)) {
+    return res.status(200).json({ advisory: cachedAdvisory.data });
   }
 
   const advisory = await getEmergencyAdvisoryText(zone, cleanLang);
@@ -104,4 +105,4 @@ if (process.env.NODE_ENV !== 'test' && !process.env.VERCEL) {
   });
 }
 
-export { insightCache, hashPayload, aiRateLimiter };
+export { insightCache, hashPayload, aiRateLimiter, isCacheEntryFresh };

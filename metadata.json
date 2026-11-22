@@ -16,22 +16,24 @@
   "testExecutionSummary": {
     "testRunner": "vitest",
     "testEnvironment": "jsdom",
-    "totalTestSuites": 10,
-    "totalTests": 171,
-    "passedTests": 171,
+    "totalTestSuites": 12,
+    "totalTests": 217,
+    "passedTests": 217,
     "failedTests": 0,
     "passRatePercent": 100,
     "suites": [
       { "name": "schoolAdvisory.test.ts", "purpose": "School Activity Thresholds, Child Inhaled Dose & Edge Cases", "tests": 63, "status": "passed" },
-      { "name": "healthDiary.test.tsx", "purpose": "30-Day SVG Correlation, Symptoms 0-3, Per-User Storage & Reports", "tests": 14, "status": "passed" },
-      { "name": "translations.test.tsx", "purpose": "Multi-language Parity (EN, HI, BN, AR, ES) & Switcher Events", "tests": 15, "status": "passed" },
+      { "name": "security.test.ts", "purpose": "SHA-256 Cache TTL Eviction, CWE-209 Safe CORS & Validation Boundaries", "tests": 30, "status": "passed" },
       { "name": "aqiBreakpoints.test.ts", "purpose": "Pure Mathematical Unit & EPA Breakpoint Tests", "tests": 18, "status": "passed" },
       { "name": "aqiCommute.test.ts", "purpose": "Inhaled Dose Calculation & Transit Comparisons", "tests": 17, "status": "passed" },
+      { "name": "routineFallback.test.ts", "purpose": "Client-Side Heuristic Fallback Engine across 6 Personas & Inversion", "tests": 16, "status": "passed" },
+      { "name": "translations.test.tsx", "purpose": "Multi-language Parity (EN, HI, BN, AR, ES) & Switcher Events", "tests": 15, "status": "passed" },
+      { "name": "healthDiary.test.tsx", "purpose": "30-Day SVG Correlation, Symptoms 0-3, Per-User Storage & Reports", "tests": 14, "status": "passed" },
       { "name": "aqiIaq.test.ts", "purpose": "Indoor Air Quality, Room Volume & CADR Calculations", "tests": 11, "status": "passed" },
-      { "name": "routing.test.ts", "purpose": "Dijkstra Lowest-Exposure Path & Hook State", "tests": 7, "status": "passed" },
       { "name": "api.test.ts", "purpose": "Live Backend HTTP, Type Guards & Security Headers", "tests": 10, "status": "passed" },
       { "name": "rendering.test.tsx", "purpose": "Component Landmarks & Screen Reader Twin Representations", "tests": 9, "status": "passed" },
-      { "name": "dom.test.tsx", "purpose": "DOM Interactions, Pledges, Simulations & Selectors", "tests": 7, "status": "passed" }
+      { "name": "dom.test.tsx", "purpose": "DOM Interactions, Pledges, Simulations & Selectors", "tests": 7, "status": "passed" },
+      { "name": "routing.test.ts", "purpose": "Dijkstra Lowest-Exposure Path & Hook State", "tests": 7, "status": "passed" }
     ]
   },
   "linterSummary": {

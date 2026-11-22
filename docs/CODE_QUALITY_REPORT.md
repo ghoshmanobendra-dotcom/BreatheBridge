@@ -22,8 +22,8 @@
 - **Zero Magic Numbers**: Breakpoints, emission weights, and CADR coefficients are centralized in `src/lib/constants/` and typed enums.
 
 ## 3. Test Coverage & Verification
-- **Test Suite**: 78 automated unit, DOM, rendering, and API tests executed via Vitest.
-- **Pass Rate**: 100% (78 passed, 0 failed).
+- **Test Suite**: 217 automated unit, DOM, rendering, and API tests executed across 12 test suites via Vitest.
+- **Pass Rate**: 100% (217 passed, 0 failed).
 - **Execution Speed**: Full test suite runs in under 4.1 seconds.
 - **Test Isolation**: All external network calls mocked; deterministic in-memory fixtures for predictable evaluation.
 

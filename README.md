@@ -1,6 +1,6 @@
 # 🛡️ BreatheBridge — Urban Air Quality & Smog Public Health Assistant
 
-[![Build & Tests](https://img.shields.io/badge/Vitest-171%20Passed-success?style=flat-square&logo=vitest)](file:///c:/Users/ghosh/OneDrive/Attachments/Desktop/GOOGLE%20CHALLANHGES/challange%206/src/test)
+[![Build & Tests](https://img.shields.io/badge/Vitest-217%20Passed-success?style=flat-square&logo=vitest)](file:///c:/Users/ghosh/OneDrive/Attachments/Desktop/GOOGLE%20CHALLANHGES/challange%206/src/test)
 [![Static Analysis](https://img.shields.io/badge/Oxlint-0%20Warnings%20%7C%200%20Errors-blue?style=flat-square)](file:///c:/Users/ghosh/OneDrive/Attachments/Desktop/GOOGLE%20CHALLANHGES/challange%206/.oxlintrc.json)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Strict%20Mode-blue?style=flat-square&logo=typescript)](file:///c:/Users/ghosh/OneDrive/Attachments/Desktop/GOOGLE%20CHALLANHGES/challange%206/tsconfig.json)
 [![Accessibility](https://img.shields.io/badge/WCAG%202.2-Level%20AA%20Compliant-emerald?style=flat-square)](file:///c:/Users/ghosh/OneDrive/Attachments/Desktop/GOOGLE%20CHALLANHGES/challange%206/src/components)
@@ -130,10 +130,10 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 BreatheBridge maintains a 100% pass rate with zero warnings:
 
 ```bash
-# Run Vitest automated test suite (171 tests across 10 suites)
+# Run Vitest automated test suite (217 tests across 12 suites)
 npm run test:run
 
-# Run Oxlint static analysis (0 warnings, 0 errors across 88 files)
+# Run Oxlint static analysis (0 warnings, 0 errors across 92 files)
 npm run lint
 
 # Compile strict production build
@@ -145,16 +145,18 @@ npm run build
 | Test Suite | Focus Area | Tests | Status |
 | :--- | :--- | :---: | :---: |
 | `schoolAdvisory.test.ts` | Edge thresholds for outdoor school activities | 63 | ✅ Passed |
-| `healthDiary.test.tsx` | 30-day SVG coordinates, symptom math & report | 14 | ✅ Passed |
-| `translations.test.tsx` | Translation parity across EN, HI, BN, AR, ES | 15 | ✅ Passed |
+| `security.test.ts` | SHA-256 Cache TTL, safe CORS & validation boundaries | 30 | ✅ Passed |
 | `aqiBreakpoints.test.ts` | EPA/CPCB piecewise interpolation & inversion math | 18 | ✅ Passed |
 | `aqiCommute.test.ts` | Inhaled PM2.5 dose & carbon abatement formulas | 17 | ✅ Passed |
+| `routineFallback.test.ts` | Heuristic fallback engine, 6 personas & inversion math | 16 | ✅ Passed |
+| `translations.test.tsx` | Translation parity across EN, HI, BN, AR, ES | 15 | ✅ Passed |
+| `healthDiary.test.tsx` | 30-day SVG coordinates, symptom math & report | 14 | ✅ Passed |
 | `aqiIaq.test.ts` | CADR 4 ACH clearance & Corsi-Rosenthal calculations | 11 | ✅ Passed |
-| `routing.test.ts` | Dijkstra lowest-exposure pathfinder | 7 | ✅ Passed |
 | `api.test.ts` | Live Express endpoints, rate limits & caching | 10 | ✅ Passed |
 | `rendering.test.tsx` | UI layouts, responsive shells & screen reader twins | 9 | ✅ Passed |
 | `dom.test.tsx` | User events, tab navigation & ARIA updates | 7 | ✅ Passed |
-| **TOTAL** | **Full Automated Verification Suite** | **171** | **✅ 171 / 171** |
+| `routing.test.ts` | Dijkstra lowest-exposure pathfinder | 7 | ✅ Passed |
+| **TOTAL** | **Full Automated Verification Suite** | **217** | **✅ 217 / 217** |
 
 ---
 
